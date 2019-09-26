@@ -1,0 +1,8 @@
+.QuestionTitle {
+	margin-top: 0;
+	margin-bottom: 20px;
+	padding-bottom: 20px;
+	border-bottom: 1px solid var(--color-brown-d2);
+
+	font-size: 20px;
+}

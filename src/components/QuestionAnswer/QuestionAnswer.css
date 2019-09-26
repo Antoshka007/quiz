@@ -1,0 +1,45 @@
+.QuestionAnswer {
+	margin-bottom: 10px;
+}
+
+.QuestionAnswer:last-child {
+	margin-bottom: 0;
+}
+
+.QuestionAnswer__btn {
+	width: 100%;
+	padding: 10px;
+	border: 1px solid var(--color-brown-d2);
+
+	background-color: transparent;
+	color: var(--color-text);
+	cursor: pointer;
+	text-align: left;
+	font-size: 18px;
+	transition-duration: 300ms;
+	transition-property: background-color, border-color;
+}
+
+.QuestionAnswer__btn:hover:not(:disabled),
+.QuestionAnswer__btn:focus:not(:disabled) {
+	background-color: var(--color-brown-d2);
+}
+
+.QuestionAnswer__btn:active:not(:disabled) {
+	background-color: var(--color-brown-d3);
+	border-color: var(--color-brown-d3);
+}
+
+.QuestionAnswer__btn:disabled {
+	cursor: default;
+}
+
+.QuestionAnswer--success .QuestionAnswer__btn {
+	background-color: #4caf50;
+	border-color: #4caf50;
+}
+
+.QuestionAnswer--fail .QuestionAnswer__btn {
+	background-color: #f44336;
+	border-color: #f44336;
+}

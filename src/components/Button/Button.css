@@ -1,0 +1,27 @@
+.Button {
+	border: 1px solid var(--color-brown-d2);
+	padding: 10px;
+
+	background-color: var(--color-brown);
+	color: var(--color-text);
+	cursor: pointer;
+	font-size: 18px;
+	text-align: center;
+	transition-duration: 300ms;
+	transition-property: background-color, border-color;
+}
+
+.Button:hover:not(:disabled),
+.Button:focus:not(:disabled) {
+	background-color: var(--color-brown-d2);
+}
+
+.Button:active:not(:disabled) {
+	background-color: var(--color-brown-d3);
+	border-color: var(--color-brown-d3);
+}
+
+.Button:disabled {
+	cursor: default;
+	opacity: 0.8;
+}

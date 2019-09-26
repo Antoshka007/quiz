@@ -1,26 +1,67 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import Result from './components/Results/Results';
+import Test from './components/Test/Test';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+const questions = [
+	{
+		id: '1',
+		question: 'Выбери правильный ответ:',
+		answers: [
+			{ text: 'Первый вариант', id: '1' },
+			{ text: 'Второй вариант', id: '2' },
+			{ text: 'Третий вариант', id: '3' },
+			{ text: 'Четвёртый вариант', id: '4' },
+		],
+		right: '1',
+	},
+	{
+		id: '2',
+		question: 'Выбери правильный ответ 2:',
+		answers: [
+			{ text: 'Первый вариант', id: '1' },
+			{ text: 'Второй вариант', id: '2' },
+			{ text: 'Третий вариант', id: '3' },
+			{ text: 'Четвёртый вариант', id: '4' },
+		],
+		right: '2',
+	},
+	{
+		id: '3',
+		question: 'Выбери правильный ответ 3:',
+		answers: [
+			{ text: 'Первый вариант', id: '1' },
+			{ text: 'Второй вариант', id: '2' },
+			{ text: 'Третий вариант', id: '3' },
+			{ text: 'Четвёртый вариант', id: '4' },
+		],
+		right: '3',
+	},
+];
+
+class App extends React.Component {
+	state = {
+		answers: [],
+	};
+
+	onAnswer = id => {
+		this.setState(state => ({ answers: [...state.answers, id] }));
+	};
+
+	onRestart = () => {
+		this.setState({ answers: [] });
+	};
+
+	render() {
+		const { answers: userAnswers } = this.state;
+
+		if (userAnswers.length === questions.length) {
+			return <Result questions={questions} userAnswers={userAnswers} onClickBtn={this.onRestart} />;
+		}
+
+		const { question, answers: questionAnswers } = questions[userAnswers.length];
+
+		return <Test question={question} answers={questionAnswers} onAnswer={this.onAnswer} />;
+	}
 }
 
 export default App;

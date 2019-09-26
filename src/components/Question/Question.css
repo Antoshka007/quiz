@@ -1,0 +1,11 @@
+.Question {
+	display: flex;
+	justify-content: center;
+}
+
+.Question__inner {
+	width: 500px;
+	padding: 20px;
+
+	background-color: var(--color-brown-d1);
+}

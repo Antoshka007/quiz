@@ -25,7 +25,15 @@ class App extends React.Component {
 
 		const { question, answers: questionAnswers } = questions[userAnswers.length];
 
-		return <Test question={question} answers={questionAnswers} onAnswer={this.onAnswer} />;
+		return (
+			<Test
+				question={question}
+				answers={questionAnswers}
+				onAnswer={this.onAnswer}
+				index={userAnswers.length + 1}
+				count={questions.length}
+			/>
+		);
 	}
 }
 

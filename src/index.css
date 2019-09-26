@@ -1,3 +1,10 @@
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
+	font-family: inherit;
+}
+
 body {
 	--color-brown: #795548;
 	--color-text: #efebe9;
@@ -19,8 +26,6 @@ body {
 	font-family: 'Times New Roman', Times, serif;
 }
 
-*,
-*::before,
-*::after {
-	font-family: inherit;
+img {
+	max-width: 100%;
 }

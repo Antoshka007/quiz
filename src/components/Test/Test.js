@@ -7,7 +7,6 @@ function Test(props) {
 	return (
 		<div className="Test">
 			<Title>Тест на знания JavaScript</Title>
-
 			<Question {...props} />
 		</div>
 	);

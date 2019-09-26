@@ -1,0 +1,14 @@
+.QuestionsList {
+	margin: 0;
+	padding: 0;
+
+	list-style: none;
+}
+
+.QuestionsList__item {
+	margin-bottom: 20px;
+}
+
+.QuestionsList__item:last-child {
+	margin-bottom: 0;
+}

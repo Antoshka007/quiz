@@ -8,7 +8,7 @@ import TestProgress from '../TestProgress/TestProgress';
 function Test({ question, answers, onAnswer, index, count }) {
 	return (
 		<div className="Test">
-			<Title>Тест на знания JavaScript</Title>
+			<Title>Викторина</Title>
 			<TestProgress index={index} count={count} />
 			<Question question={question} answers={answers} onAnswer={onAnswer} />
 		</div>

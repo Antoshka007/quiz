@@ -9,7 +9,7 @@ import ResultsInfo from '../ResultsInfo/ResultsInfo';
 function Results({ questions, userAnswers, onClickBtn }) {
 	return (
 		<div className="Results">
-			<Title>Результаты</Title>
+			<Title>Результат</Title>
 			<ResultsInfo
 				successCount={getSuccessCount(questions, userAnswers)}
 				count={questions.length}

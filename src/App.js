@@ -19,7 +19,7 @@ class App extends React.Component {
 
 	render() {
 		const { answers: userAnswers } = this.state;
-		const { question, answers: questionAnswers } = questions[userAnswers.length];
+		const { question, answers: questionAnswers } = questions[userAnswers.length] || {};
 		const isFinished = userAnswers.length === questions.length;
 
 		return (

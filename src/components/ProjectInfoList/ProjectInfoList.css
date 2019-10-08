@@ -1,0 +1,28 @@
+.ProjectInfoList {
+	margin: 0;
+	padding: 0;
+
+	list-style: none;
+}
+
+.ProjectInfoList__item {
+	margin-bottom: 20px;
+}
+
+.ProjectInfoList__item:last-child {
+	margin-bottom: 0;
+}
+
+.ProjectInfoList__item-title {
+	display: block;
+	margin-bottom: 5px;
+
+	font-size: 20px;
+}
+
+.ProjectInfoList__item-version {
+	display: block;
+
+	font-size: 14px;
+	color: var(--color-brown-l3);
+}

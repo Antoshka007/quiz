@@ -20,6 +20,10 @@ function ProjectInfoList() {
 				<span className="ProjectInfoList__item-title">PropTypes</span>
 				<span className="ProjectInfoList__item-version">15.7.2</span>
 			</li>
+			<li className="ProjectInfoList__item">
+				<span className="ProjectInfoList__item-title">Git</span>
+				<span className="ProjectInfoList__item-version">2.16.2</span>
+			</li>
 		</ul>
 	);
 }

@@ -15,13 +15,13 @@
 
 .ProjectInfoList__item-title {
 	display: block;
-	margin-bottom: 5px;
 
 	font-size: 20px;
 }
 
 .ProjectInfoList__item-version {
 	display: block;
+	margin-bottom: 5px;
 
 	font-size: 14px;
 	color: var(--color-brown-l3);

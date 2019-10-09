@@ -43,3 +43,8 @@
 	background-color: #f44336;
 	border-color: #f44336;
 }
+
+.QuestionAnswer--selected .QuestionAnswer__btn:not(:disabled) {
+	background-color: var(--color-brown-d3);
+	border-color: var(--color-brown-d3);
+}

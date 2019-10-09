@@ -3,7 +3,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 function TestProgress({ index, count }) {
-	const progress = Math.round(((index - 1) / count) * 100);
+	const progress = Math.round((index / count) * 100);
 
 	return (
 		<p className="TestProgress">

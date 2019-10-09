@@ -11,8 +11,9 @@ function QuestionAnswers({ answers, onAnswer, rightAnswer, userAnswer }) {
 					key={answer.id}
 					answer={answer}
 					onAnswer={onAnswer}
-					isSuccess={answer.id === rightAnswer}
-					isFail={answer.id === userAnswer && userAnswer !== rightAnswer}
+					isSelected={!rightAnswer && userAnswer === answer.id}
+					isSuccess={!!rightAnswer && answer.id === rightAnswer}
+					isFail={!!rightAnswer && answer.id === userAnswer && userAnswer !== rightAnswer}
 				/>
 			))}
 		</ul>

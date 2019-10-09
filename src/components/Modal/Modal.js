@@ -1,11 +1,18 @@
 import './Modal.css';
 import React from 'react';
 import ReactDOM from 'react-dom';
+import PropTypes from 'prop-types';
 import Button from '../Button/Button';
 
 const modalRoot = document.querySelector('.modal-root');
 
 class Modal extends React.Component {
+	static propTypes = {
+		isOpened: PropTypes.bool.isRequired,
+		onClose: PropTypes.func,
+		title: PropTypes.string.isRequired,
+	};
+
 	constructor(props) {
 		super(props);
 		this.el = document.createElement('section');

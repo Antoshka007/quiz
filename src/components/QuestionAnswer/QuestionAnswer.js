@@ -11,6 +11,7 @@ class QuestionAnswer extends React.Component {
 		onAnswer: PropTypes.func,
 		isSuccess: PropTypes.bool,
 		isFail: PropTypes.bool,
+		isSelected: PropTypes.bool,
 	};
 
 	handleClick = () => {
@@ -22,14 +23,15 @@ class QuestionAnswer extends React.Component {
 	};
 
 	render() {
-		const { answer, isSuccess, isFail, onAnswer } = this.props;
+		const { answer, isSuccess, isFail, isSelected, onAnswer } = this.props;
 
 		return (
 			<li
 				className={
 					'QuestionAnswer' +
 					(isSuccess ? ' QuestionAnswer--success' : '') +
-					(isFail ? ' QuestionAnswer--fail' : '')
+					(isFail ? ' QuestionAnswer--fail' : '') +
+					(isSelected ? ' QuestionAnswer--selected' : '')
 				}
 			>
 				<button className="QuestionAnswer__btn" onClick={this.handleClick} disabled={!onAnswer}>

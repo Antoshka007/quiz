@@ -2,3 +2,26 @@
 	display: flex;
 	flex-direction: column;
 }
+
+.Test__buttons {
+	width: 500px;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	margin-top: 20px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.Test__button {
+	width: 240px;
+}
+
+.Test__button--finished {
+	width: 100%;
+	margin-top: 20px;
+}
+
+.Test__button-inner {
+	width: 100%;
+}

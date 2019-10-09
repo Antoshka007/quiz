@@ -1,23 +1,42 @@
 import './TestProgress.css';
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 
-function TestProgress({ index, count }) {
-	const progress = Math.round((index / count) * 100);
+function TestProgress({ index, count, userAnswers }) {
+	const questionNumbers = [];
+
+	for (let i = 0; i < count; i++) questionNumbers.push(i + 1);
 
 	return (
-		<p className="TestProgress">
-			<span className="TestProgress__text">
-				Вопрос {index} из {count}
-			</span>
-			<span className="TestProgress__progress" style={{ width: progress + '%' }}></span>
-		</p>
+		<ul className="TestProgress">
+			{questionNumbers.map(n => {
+				const isCurrent = index === n;
+				const isSelected = !!userAnswers[n - 1];
+
+				return (
+					<li
+						className={
+							'TestProgress__item' +
+							(isSelected ? ' TestProgress__item--selected' : '') +
+							(isCurrent ? ' TestProgress__item--current' : '')
+						}
+						key={n}
+					>
+						<Link className="TestProgress__item-link" to={`/questions/${n}`}>
+							{n}
+						</Link>
+					</li>
+				);
+			})}
+		</ul>
 	);
 }
 
 TestProgress.propTypes = {
 	index: PropTypes.number.isRequired,
 	count: PropTypes.number.isRequired,
+	userAnswers: PropTypes.array.isRequired,
 };
 
 export default TestProgress;

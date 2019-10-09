@@ -1,25 +1,52 @@
 .TestProgress {
+	display: flex;
+	flex-wrap: wrap;
 	width: 500px;
 	margin-left: auto;
 	margin-right: auto;
 	margin-bottom: 20px;
 	margin-top: 0;
+	padding: 10px;
 	border: 1px solid var(--color-brown-d2);
+
+	list-style: none;
 }
 
-.TestProgress__text {
-	display: inline-block;
-	padding-top: 10px;
-	padding-left: 20px;
-	padding-right: 20px;
-	padding-bottom: 5px;
+.TestProgress__item {
+	margin-right: 10px;
 }
 
-.TestProgress__progress {
-	display: block;
-	height: 5px;
+.TestProgress__item:last-child {
+	margin-right: 0;
+}
 
+.TestProgress__item-link {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	min-width: 32px;
+	height: 32px;
+	padding: 5px;
+	border: 1px solid var(--color-brown-d2);
+
+	border-radius: 50%;
+	color: var(--color-text);
+	text-decoration: none;
+}
+
+.TestProgress__item--current .TestProgress__item-link {
+	border-color: var(--color-text);
+}
+
+.TestProgress__item--selected .TestProgress__item-link {
+	border-color: #4caf50;
+}
+
+.TestProgress__item-link:hover,
+.TestProgress__item-link:focus {
 	background-color: var(--color-brown-d2);
-	transition-property: width;
-	transition-duration: 300ms;
+}
+
+.TestProgress__item-link:active {
+	background-color: var(--color-brown-d3);
 }

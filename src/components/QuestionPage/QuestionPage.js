@@ -30,6 +30,7 @@ class QuestionPage extends React.Component {
 				index={index}
 				count={questions.length}
 				userAnswer={userAnswers[index - 1]}
+				userAnswers={userAnswers}
 				isAllQuestionsAnswered={isAllQuestionsAnswered}
 			/>
 		);

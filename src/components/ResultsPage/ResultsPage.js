@@ -2,7 +2,6 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import Results from '../Results/Results';
-import questions from '../../data';
 import { clearAnswers } from '../../modules/answers';
 
 class ResultsPage extends React.Component {
@@ -13,22 +12,21 @@ class ResultsPage extends React.Component {
 	};
 
 	render() {
-		const { userAnswers } = this.props;
-		const isAllQuestionsAnswered = questions.every((q, i) => !!userAnswers[i]);
+		const {
+			userAnswers,
+			questions: { data },
+		} = this.props;
+		const isAllQuestionsAnswered = data.every((q, i) => !!userAnswers[i]);
 
 		if (!isAllQuestionsAnswered) {
 			return <Redirect to="/" />;
 		}
 
-		return (
-			<Results questions={questions} userAnswers={userAnswers} onClickBtn={this.onClearAnswers} />
-		);
+		return <Results questions={data} userAnswers={userAnswers} onClickBtn={this.onClearAnswers} />;
 	}
 }
 
-const mapStateToProps = state => {
-	return { userAnswers: state.userAnswers };
-};
+const mapStateToProps = state => state;
 
 const mapDispatchToProps = dispatch => {
 	return {

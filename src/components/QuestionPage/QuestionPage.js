@@ -2,7 +2,6 @@ import React from 'react';
 import { connect } from 'react-redux';
 import NotFoundPage from '../NotFoundPage/NotFoundPage';
 import Test from '../Test/Test';
-import questions from '../../data';
 import { saveAnswer } from '../../modules/answers';
 
 class QuestionPage extends React.Component {
@@ -14,10 +13,14 @@ class QuestionPage extends React.Component {
 	};
 
 	render() {
-		const { match, userAnswers } = this.props;
+		const {
+			match,
+			userAnswers,
+			questions: { data },
+		} = this.props;
 		const index = +match.params.index;
-		const question = questions[index - 1];
-		const isAllQuestionsAnswered = questions.every((q, i) => !!userAnswers[i]);
+		const question = data[index - 1];
+		const isAllQuestionsAnswered = data.every((q, i) => !!userAnswers[i]);
 
 		if (!question) {
 			return <NotFoundPage />;
@@ -29,7 +32,7 @@ class QuestionPage extends React.Component {
 				answers={question.answers}
 				onAnswer={this.onAnswer}
 				index={index}
-				count={questions.length}
+				count={data.length}
 				userAnswer={userAnswers[index - 1]}
 				userAnswers={userAnswers}
 				isAllQuestionsAnswered={isAllQuestionsAnswered}
@@ -38,9 +41,7 @@ class QuestionPage extends React.Component {
 	}
 }
 
-const mapStateToProps = state => {
-	return { userAnswers: state.userAnswers };
-};
+const mapStateToProps = state => state;
 
 const mapDispatchToProps = dispatch => {
 	return {

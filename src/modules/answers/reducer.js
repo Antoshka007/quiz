@@ -1,13 +1,13 @@
 import { saveAnswer, clearAnswers } from './actions';
 
-export const reducer = (state = { userAnswers: [] }, action) => {
+export const reducer = (state = [], action) => {
 	switch (action.type) {
 		case saveAnswer.toString():
-			const userAnswersCopy = state.userAnswers.slice();
+			const userAnswersCopy = state.slice();
 			userAnswersCopy[action.payload.index] = action.payload.id;
-			return { userAnswers: userAnswersCopy };
+			return userAnswersCopy;
 		case clearAnswers.toString():
-			return { userAnswers: [] };
+			return [];
 		default:
 			return state;
 	}

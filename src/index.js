@@ -6,19 +6,12 @@ import { Provider } from 'react-redux';
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
+import { reducer } from './modules/answers';
 
-let store = createStore((state = { userAnswers: [] }, action) => {
-	switch (action.type) {
-		case 'SAVE_ANSWER':
-			const userAnswersCopy = state.userAnswers.slice();
-			userAnswersCopy[action.payload.index] = action.payload.id;
-			return { userAnswers: userAnswersCopy };
-		case 'CLEAR_ANSWERS':
-			return { userAnswers: [] };
-		default:
-			return state;
-	}
-}, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
+let store = createStore(
+	reducer,
+	window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+);
 
 ReactDOM.render(
 	<Provider store={store}>

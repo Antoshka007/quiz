@@ -3,13 +3,14 @@ import { connect } from 'react-redux';
 import NotFoundPage from '../NotFoundPage/NotFoundPage';
 import Test from '../Test/Test';
 import questions from '../../data';
+import { saveAnswer } from '../../modules/answers';
 
 class QuestionPage extends React.Component {
 	onAnswer = id => {
 		const { match, saveAnswer } = this.props;
 		const index = +match.params.index - 1;
 
-		saveAnswer(index, id);
+		saveAnswer({ index, id });
 	};
 
 	render() {
@@ -43,16 +44,9 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
 	return {
-		saveAnswer: (index, id) => {
-			dispatch(saveAnswer(index, id));
+		saveAnswer: ({ index, id }) => {
+			dispatch(saveAnswer({ index, id }));
 		},
-	};
-};
-
-const saveAnswer = (index, id) => {
-	return {
-		type: 'SAVE_ANSWER',
-		payload: { index, id },
 	};
 };
 

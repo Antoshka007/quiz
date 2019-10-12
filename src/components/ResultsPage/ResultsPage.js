@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import Results from '../Results/Results';
 import questions from '../../data';
+import { clearAnswers } from '../../modules/answers';
 
 class ResultsPage extends React.Component {
 	onClearAnswers = () => {
@@ -35,10 +36,6 @@ const mapDispatchToProps = dispatch => {
 			dispatch(clearAnswers());
 		},
 	};
-};
-
-const clearAnswers = (index, id) => {
-	return { type: 'CLEAR_ANSWERS' };
 };
 
 export default connect(

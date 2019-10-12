@@ -9,6 +9,7 @@ function ProjectInfoList() {
 		{ name: 'React Router DOM', version: '5.1.2' },
 		{ name: 'Redux', version: '4.0.4' },
 		{ name: 'React Redux', version: '7.1.1' },
+		{ name: 'Redux Actions', version: '2.6.5' },
 		{ name: 'PropTypes', version: '15.7.2' },
 		{ name: 'Git', version: '2.16.2' },
 	];

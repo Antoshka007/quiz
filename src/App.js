@@ -8,6 +8,7 @@ import QuestionPage from './components/QuestionPage/QuestionPage';
 import ResultsPage from './components/ResultsPage/ResultsPage';
 import NotFoundPage from './components/NotFoundPage/NotFoundPage';
 import Loader from './components/Loader/Loader';
+import AppError from './components/AppError/AppError';
 
 class App extends React.Component {
 	componentDidMount() {
@@ -18,13 +19,15 @@ class App extends React.Component {
 
 	render() {
 		const {
-			questions: { isLoading },
+			questions: { isLoading, error },
 		} = this.props;
 
 		return (
 			<React.Fragment>
 				{isLoading ? (
 					<Loader />
+				) : error ? (
+					<AppError>Что-то пошло не так...</AppError>
 				) : (
 					<Switch>
 						<Route path="/" component={WelcomePage} exact />

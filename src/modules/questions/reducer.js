@@ -1,25 +1,28 @@
+import { combineReducers } from 'redux';
+import { handleActions } from 'redux-actions';
 import { fetchQuestionsRequest, fetchQuestionsSuccess, fetchQuestionsFailure } from './actions';
 
-export const reducer = (state = { data: [], isLoading: false, error: null }, action) => {
-	switch (action.type) {
-		case fetchQuestionsRequest.toString():
-			return {
-				...state,
-				isLoading: true,
-			};
-		case fetchQuestionsSuccess.toString():
-			return {
-				...state,
-				isLoading: false,
-				data: action.payload,
-			};
-		case fetchQuestionsFailure.toString():
-			return {
-				...state,
-				isLoading: false,
-				error: action.payload,
-			};
-		default:
-			return state;
-	}
-};
+const data = handleActions(
+	{
+		[fetchQuestionsSuccess]: (state, action) => action.payload,
+	},
+	[]
+);
+
+const isLoading = handleActions(
+	{
+		[fetchQuestionsRequest]: () => true,
+		[fetchQuestionsSuccess]: () => false,
+		[fetchQuestionsFailure]: () => false,
+	},
+	false
+);
+
+const error = handleActions(
+	{
+		[fetchQuestionsFailure]: (state, action) => action.payload,
+	},
+	null
+);
+
+export const reducer = combineReducers({ data, isLoading, error });

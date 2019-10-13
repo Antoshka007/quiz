@@ -1,14 +1,14 @@
+import { handleActions } from 'redux-actions';
 import { saveAnswer, clearAnswers } from './actions';
 
-export const reducer = (state = [], action) => {
-	switch (action.type) {
-		case saveAnswer.toString():
+export const reducer = handleActions(
+	{
+		[saveAnswer]: (state, action) => {
 			const userAnswersCopy = state.slice();
 			userAnswersCopy[action.payload.index] = action.payload.id;
 			return userAnswersCopy;
-		case clearAnswers.toString():
-			return [];
-		default:
-			return state;
-	}
-};
+		},
+		[clearAnswers]: () => [],
+	},
+	[]
+);

@@ -2,7 +2,8 @@ import React from 'react';
 import { connect } from 'react-redux';
 import NotFoundPage from '../NotFoundPage/NotFoundPage';
 import Test from '../Test/Test';
-import { saveAnswer } from '../../modules/answers';
+import { saveAnswer, getUserAnswers } from '../../modules/answers';
+import { getQuestions } from '../../modules/questions';
 
 class QuestionPage extends React.Component {
 	onAnswer = id => {
@@ -13,14 +14,10 @@ class QuestionPage extends React.Component {
 	};
 
 	render() {
-		const {
-			match,
-			userAnswers,
-			questions: { data },
-		} = this.props;
+		const { match, userAnswers, questions } = this.props;
 		const index = +match.params.index;
-		const question = data[index - 1];
-		const isAllQuestionsAnswered = data.every((q, i) => !!userAnswers[i]);
+		const question = questions[index - 1];
+		const isAllQuestionsAnswered = questions.every((q, i) => !!userAnswers[i]);
 
 		if (!question) {
 			return <NotFoundPage />;
@@ -32,7 +29,7 @@ class QuestionPage extends React.Component {
 				answers={question.answers}
 				onAnswer={this.onAnswer}
 				index={index}
-				count={data.length}
+				count={questions.length}
 				userAnswer={userAnswers[index - 1]}
 				userAnswers={userAnswers}
 				isAllQuestionsAnswered={isAllQuestionsAnswered}
@@ -41,7 +38,10 @@ class QuestionPage extends React.Component {
 	}
 }
 
-const mapStateToProps = state => state;
+const mapStateToProps = state => ({
+	userAnswers: getUserAnswers(state),
+	questions: getQuestions(state),
+});
 
 const mapDispatchToProps = dispatch => {
 	return {

@@ -9,6 +9,7 @@ import ResultsPage from './components/ResultsPage/ResultsPage';
 import NotFoundPage from './components/NotFoundPage/NotFoundPage';
 import Loader from './components/Loader/Loader';
 import AppError from './components/AppError/AppError';
+import { getQuestionsIsLoading, getQuestionsError } from './modules/questions';
 
 class App extends React.Component {
 	componentDidMount() {
@@ -18,15 +19,13 @@ class App extends React.Component {
 	}
 
 	render() {
-		const {
-			questions: { isLoading, error },
-		} = this.props;
+		const { questionsIsLoading, questionsError } = this.props;
 
 		return (
 			<React.Fragment>
-				{isLoading ? (
+				{questionsIsLoading ? (
 					<Loader />
-				) : error ? (
+				) : questionsError ? (
 					<AppError>Что-то пошло не так...</AppError>
 				) : (
 					<Switch>
@@ -43,7 +42,10 @@ class App extends React.Component {
 	}
 }
 
-const mapStateToProps = state => state;
+const mapStateToProps = state => ({
+	questionsIsLoading: getQuestionsIsLoading(state),
+	questionsError: getQuestionsError(state),
+});
 const mapDispatchToPtops = dispatch => {
 	return {
 		fetchQuestionsRequest: () => dispatch(fetchQuestionsRequest()),

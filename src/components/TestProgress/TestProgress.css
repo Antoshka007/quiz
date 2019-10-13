@@ -34,12 +34,12 @@
 	text-decoration: none;
 }
 
-.TestProgress__item--current .TestProgress__item-link {
-	border-color: var(--color-text);
-}
-
 .TestProgress__item--selected .TestProgress__item-link {
 	border-color: #4caf50;
+}
+
+.TestProgress__item--current .TestProgress__item-link {
+	border-color: var(--color-text);
 }
 
 .TestProgress__item-link:hover,

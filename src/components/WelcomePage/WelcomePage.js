@@ -7,7 +7,7 @@ import Button from '../Button/Button';
 function WelcomePage() {
 	return (
 		<div className="WelcomePage">
-			<Title>Викторина</Title>
+			<Title isBig={true}>Викторина</Title>
 
 			<div className="WelcomePage__link-wrap">
 				<Link to="/questions/1">

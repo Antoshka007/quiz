@@ -22,7 +22,6 @@ function Test({
 
 	return (
 		<div className="Test">
-			<Title>Викторина</Title>
 			<TestProgress index={index} count={count} userAnswers={userAnswers} />
 			<Question question={question} answers={answers} onAnswer={onAnswer} userAnswer={userAnswer} />
 

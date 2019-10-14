@@ -1,6 +1,7 @@
 .Test {
 	display: flex;
 	flex-direction: column;
+	padding-top: 20px;
 }
 
 .Test__buttons {

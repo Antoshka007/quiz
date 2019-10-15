@@ -3,7 +3,6 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import Question from '../Question/Question';
-import Title from '../Title/Title';
 import TestProgress from '../TestProgress/TestProgress';
 import Button from '../Button/Button';
 

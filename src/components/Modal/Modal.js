@@ -21,11 +21,21 @@ class Modal extends React.Component {
 
 	componentDidMount() {
 		modalRoot.appendChild(this.el);
+		this.el.addEventListener('click', this.overlayClickHandler);
 	}
 
 	componentWillUnmount() {
 		modalRoot.removeChild(this.el);
+		this.el.removeEventListener('click', this.overlayClickHandler);
 	}
+
+	overlayClickHandler = e => {
+		const { onClose } = this.props;
+
+		if (e.target === this.el) {
+			onClose();
+		}
+	};
 
 	render() {
 		const { isOpened, onClose, title, children } = this.props;

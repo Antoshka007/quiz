@@ -12,6 +12,7 @@
 
 	background-color: rgba(0, 0, 0, 0.6);
 	overflow: auto;
+	cursor: pointer;
 }
 
 .Modal--opened {
@@ -19,15 +20,20 @@
 }
 
 .Modal__inner {
-	width: 500px;
+	width: 400px;
 	padding: 20px;
 
 	background-color: var(--color-brown-d2);
+	cursor: initial;
 }
 
 .Modal__title {
 	margin: 0;
 	margin-bottom: 20px;
+	padding-bottom: 10px;
+	border-bottom: 1px solid var(--color-text);
+
+	font-size: 28px;
 }
 
 .Modal__content {

@@ -2,11 +2,12 @@
 	margin: 0;
 	padding: 0;
 
+	text-align: center;
 	list-style: none;
 }
 
 .ProjectInfoList__item {
-	margin-bottom: 20px;
+	margin-bottom: 10px;
 }
 
 .ProjectInfoList__item:last-child {
@@ -16,13 +17,13 @@
 .ProjectInfoList__item-title {
 	display: block;
 
-	font-size: 20px;
+	font-size: 24px;
 }
 
 .ProjectInfoList__item-version {
 	display: block;
 	margin-bottom: 5px;
 
-	font-size: 14px;
+	font-size: 18px;
 	color: var(--color-brown-l3);
 }

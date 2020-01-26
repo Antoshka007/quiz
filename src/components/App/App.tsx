@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { Dispatch } from 'redux';
 import { Switch, Route } from 'react-router-dom';
 import { fetchQuestionsRequest } from '../../modules/questions';
 import Footer from '../Footer/Footer';
@@ -11,6 +12,7 @@ import Loader from '../Loader/Loader';
 import AppError from '../AppError/AppError';
 import { getQuestionsIsLoading, getQuestionsError } from '../../modules/questions';
 import { IAppProps } from './App.types';
+import { IState } from '../../store/store.typings';
 
 class App extends React.Component<IAppProps> {
 	componentDidMount() {
@@ -43,11 +45,11 @@ class App extends React.Component<IAppProps> {
 	}
 }
 
-const mapStateToProps = (state: any) => ({
+const mapStateToProps = (state: IState) => ({
 	questionsIsLoading: getQuestionsIsLoading(state),
 	questionsError: getQuestionsError(state),
 });
-const mapDispatchToPtops = (dispatch: any) => {
+const mapDispatchToPtops = (dispatch: Dispatch) => {
 	return {
 		fetchQuestionsRequest: () => dispatch(fetchQuestionsRequest()),
 	};

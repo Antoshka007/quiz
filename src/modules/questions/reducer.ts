@@ -4,23 +4,23 @@ import { fetchQuestionsRequest, fetchQuestionsSuccess, fetchQuestionsFailure } f
 
 const data = handleActions(
 	{
-		[fetchQuestionsSuccess as any]: (state, action) => action.payload,
+		[fetchQuestionsSuccess.toString()]: (state, action: ReturnType<typeof fetchQuestionsSuccess>) => action.payload,
 	},
 	[]
 );
 
 const isLoading = handleActions(
 	{
-		[fetchQuestionsRequest as any]: () => true,
-		[fetchQuestionsSuccess as any]: () => false,
-		[fetchQuestionsFailure as any]: () => false,
+		[fetchQuestionsRequest.toString()]: () => true,
+		[fetchQuestionsSuccess.toString()]: () => false,
+		[fetchQuestionsFailure.toString()]: () => false,
 	},
 	false
 );
 
 const error = handleActions(
 	{
-		[fetchQuestionsFailure as any]: (state, action) => action.payload,
+		[fetchQuestionsFailure.toString()]: (state, action: ReturnType<typeof fetchQuestionsFailure>) => action.payload,
 	},
 	null
 );

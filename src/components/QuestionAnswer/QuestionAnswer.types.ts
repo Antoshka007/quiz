@@ -1,7 +1,4 @@
-export interface IQuestionAnswer {
-	id: string;
-	text: string;
-}
+import { IQuestionAnswer } from '../../store/store.typings';
 
 export interface IQuestionAnswerProps {
 	answer: IQuestionAnswer;

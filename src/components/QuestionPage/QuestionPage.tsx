@@ -1,10 +1,16 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { Dispatch } from 'redux';
 import NotFoundPage from '../NotFoundPage/NotFoundPage';
 import Test from '../Test/Test';
 import { saveAnswer, getUserAnswers } from '../../modules/answers';
 import { getQuestions } from '../../modules/questions';
-import { IQuestionPageProps } from './QuestionPage.types';
+import {
+	IQuestionPageMapStateProps,
+	IQuestionPageMapDispatchProps,
+	IQuestionPageProps,
+} from './QuestionPage.types';
+import { IState } from '../../store/store.typings';
 
 class QuestionPage extends React.Component<IQuestionPageProps> {
 	onAnswer = (id: string) => {
@@ -18,7 +24,7 @@ class QuestionPage extends React.Component<IQuestionPageProps> {
 		const { match, userAnswers, questions } = this.props;
 		const index = +match.params.index;
 		const question = questions[index - 1];
-		const isAllQuestionsAnswered = questions.every((q: any, i: number) => !!userAnswers[i]);
+		const isAllQuestionsAnswered = questions.every((q, i: number) => !!userAnswers[i]);
 
 		if (!question) {
 			return <NotFoundPage />;
@@ -39,15 +45,15 @@ class QuestionPage extends React.Component<IQuestionPageProps> {
 	}
 }
 
-const mapStateToProps = (state: any) => ({
+const mapStateToProps = (state: IState): IQuestionPageMapStateProps => ({
 	userAnswers: getUserAnswers(state),
 	questions: getQuestions(state),
 });
 
-const mapDispatchToProps = (dispatch: any) => {
+const mapDispatchToProps = (dispatch: Dispatch): IQuestionPageMapDispatchProps => {
 	return {
-		saveAnswer: ({ index, id }: any) => {
-			dispatch(saveAnswer({ index, id }));
+		saveAnswer: ({ index, id }) => {
+			return dispatch(saveAnswer({ index, id }));
 		},
 	};
 };

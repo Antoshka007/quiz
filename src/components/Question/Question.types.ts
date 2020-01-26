@@ -1,4 +1,4 @@
-import { IQuestionAnswer } from '../QuestionAnswer/QuestionAnswer.types';
+import { IQuestionAnswer } from '../../store/store.typings';
 
 export interface IQuestionProps {
 	question: string;

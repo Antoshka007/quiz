@@ -5,6 +5,7 @@ import Button from '../Button/Button';
 import QuestionsList from '../QuestionsList/QuestionsList';
 import ResultsInfo from '../ResultsInfo/ResultsInfo';
 import { IResultsProps } from './Results.types';
+import { IQuestion } from '../../store/store.typings';
 
 function Results({ questions, userAnswers, onClickBtn }: IResultsProps) {
 	return (
@@ -22,9 +23,13 @@ function Results({ questions, userAnswers, onClickBtn }: IResultsProps) {
 	);
 }
 
-function getSuccessCount(questions: Array<any>, userAnswers: string[]) {
+function getSuccessCount(questions: Array<IQuestion>, userAnswers: Array<string>) {
 	return questions.reduce((accumulator, question, index) => {
-		return accumulator + (question.right === userAnswers[index]);
+		if (question.right === userAnswers[index]) {
+			return accumulator + 1;
+		}
+
+		return accumulator;
 	}, 0);
 }
 

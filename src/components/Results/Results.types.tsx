@@ -1,5 +1,7 @@
+import { IQuestion } from '../../store/store.typings';
+
 export interface IResultsProps {
-	questions: Array<any>;
+	questions: Array<IQuestion>;
 	userAnswers: string[];
 	onClickBtn: () => void;
 }

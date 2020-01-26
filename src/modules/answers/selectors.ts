@@ -1,1 +1,3 @@
-export const getUserAnswers = (state: any) => state.userAnswers;
+import { IState } from '../../store/store.typings';
+
+export const getUserAnswers = (state: IState) => state.userAnswers;

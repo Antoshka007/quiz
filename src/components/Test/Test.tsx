@@ -61,10 +61,8 @@ function Test({
 	);
 }
 
-const mapStateToProps = () => ({});
-
 const mapDispatchToProps = (dispatch: Dispatch): ITestMapDispatchProps => ({
 	setPage: (page) => dispatch(setPage(page)),
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(Test);
+export default connect(null, mapDispatchToProps)(Test);

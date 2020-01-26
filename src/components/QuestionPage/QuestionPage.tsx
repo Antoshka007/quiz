@@ -11,14 +11,43 @@ import {
 	IQuestionPageProps,
 } from './QuestionPage.types';
 import { IState } from '../../store/store.typings';
+import { setPage } from '../../modules/pages/actions';
 
 class QuestionPage extends React.Component<IQuestionPageProps> {
 	onAnswer = (id: string) => {
-		const { number, saveAnswer } = this.props;
+		const { number, saveAnswer, setPage } = this.props;
 		const index = number - 1;
+		const nextQuestion = this.getNextQuestionNumber();
 
 		saveAnswer({ index, id });
+
+		if (nextQuestion) {
+			setPage(`/questions/${nextQuestion}`);
+		}
 	};
+
+	getNextQuestionNumber(): number | null {
+		const { questions, userAnswers, number } = this.props;
+		const traversalOrder = [];
+
+		for (let i = number; i !== number - 1; i++) {
+			if (questions[i]) {
+				traversalOrder.push(i);
+			} else {
+				i = -1;
+			}
+		}
+
+		for (let i = 0; i < traversalOrder.length; i++) {
+			const questionIndex = traversalOrder[i];
+
+			if (!userAnswers[questionIndex]) {
+				return questionIndex + 1;
+			}
+		}
+
+		return null;
+	}
 
 	render() {
 		const { number, userAnswers, questions } = this.props;
@@ -51,9 +80,8 @@ const mapStateToProps = (state: IState): IQuestionPageMapStateProps => ({
 
 const mapDispatchToProps = (dispatch: Dispatch): IQuestionPageMapDispatchProps => {
 	return {
-		saveAnswer: ({ index, id }) => {
-			return dispatch(saveAnswer({ index, id }));
-		},
+		saveAnswer: payload => dispatch(saveAnswer(payload)),
+		setPage: page => dispatch(setPage(page)),
 	};
 };
 

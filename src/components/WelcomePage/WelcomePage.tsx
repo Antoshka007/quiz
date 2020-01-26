@@ -21,10 +21,8 @@ function WelcomePage({ setPage }: IWelcomePageProps) {
 	);
 }
 
-const mapStateToProps = () => ({});
-
 const mapDispatchToProps = (dispatch: Dispatch): IWelcomePageMapDispatchProps => ({
 	setPage: (page) => dispatch(setPage(page)),
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(WelcomePage);
+export default connect(null, mapDispatchToProps)(WelcomePage);

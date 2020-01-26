@@ -1,5 +1,6 @@
 import { IQuestion } from '../../store/store.typings';
 import { saveAnswer } from '../../modules/answers';
+import { setPage } from '../../modules/pages';
 
 export interface IQuestionPageMapStateProps {
 	userAnswers: Array<string>;
@@ -8,6 +9,7 @@ export interface IQuestionPageMapStateProps {
 
 export interface IQuestionPageMapDispatchProps {
 	saveAnswer: typeof saveAnswer;
+	setPage: typeof setPage;
 }
 
 export interface IQuestionPageOwnProps {

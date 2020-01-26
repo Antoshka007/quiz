@@ -1,9 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Redirect } from 'react-router-dom';
 import { Dispatch } from 'redux';
 import Results from '../Results/Results';
 import { clearAnswers, getUserAnswers } from '../../modules/answers';
+import { setPage } from '../../modules/pages/actions';
 import { getQuestions } from '../../modules/questions';
 import { IResultsPageProps, IResultPageMapStateProps, IResultPageMapDispatchProps } from './ResultsPage.types';
 import { IState } from '../../store/store.typings';
@@ -16,11 +16,12 @@ class ResultsPage extends React.Component<IResultsPageProps> {
 	};
 
 	render() {
-		const { userAnswers, questions } = this.props;
+		const { userAnswers, questions, setPage } = this.props;
 		const isAllQuestionsAnswered = questions.every((q, i) => !!userAnswers[i]);
 
 		if (!isAllQuestionsAnswered) {
-			return <Redirect to="/" />;
+			setPage('/');
+			return null;
 		}
 
 		return (
@@ -37,8 +38,11 @@ const mapStateToProps = (state: IState): IResultPageMapStateProps => ({
 const mapDispatchToProps = (dispatch: Dispatch): IResultPageMapDispatchProps => {
 	return {
 		clearAnswers: () => {
-			dispatch(clearAnswers());
+			return dispatch(clearAnswers());
 		},
+		setPage: (page) => {
+			return dispatch(setPage(page));
+		}
 	};
 };
 

@@ -14,16 +14,15 @@ import { IState } from '../../store/store.typings';
 
 class QuestionPage extends React.Component<IQuestionPageProps> {
 	onAnswer = (id: string) => {
-		const { match, saveAnswer } = this.props;
-		const index = +match.params.index - 1;
+		const { number, saveAnswer } = this.props;
+		const index = number - 1;
 
 		saveAnswer({ index, id });
 	};
 
 	render() {
-		const { match, userAnswers, questions } = this.props;
-		const index = +match.params.index;
-		const question = questions[index - 1];
+		const { number, userAnswers, questions } = this.props;
+		const question = questions[number - 1];
 		const isAllQuestionsAnswered = questions.every((q, i: number) => !!userAnswers[i]);
 
 		if (!question) {
@@ -35,9 +34,9 @@ class QuestionPage extends React.Component<IQuestionPageProps> {
 				question={question.question}
 				answers={question.answers}
 				onAnswer={this.onAnswer}
-				index={index}
+				index={number}
 				count={questions.length}
-				userAnswer={userAnswers[index - 1]}
+				userAnswer={userAnswers[number - 1]}
 				userAnswers={userAnswers}
 				isAllQuestionsAnswered={isAllQuestionsAnswered}
 			/>

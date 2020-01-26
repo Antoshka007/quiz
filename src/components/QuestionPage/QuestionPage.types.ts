@@ -11,7 +11,7 @@ export interface IQuestionPageMapDispatchProps {
 }
 
 export interface IQuestionPageOwnProps {
-	match: any;
+	number: number;
 }
 
 export interface IQuestionPageProps extends IQuestionPageMapStateProps, IQuestionPageMapDispatchProps, IQuestionPageOwnProps {}

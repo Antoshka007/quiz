@@ -1,7 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Dispatch } from 'redux';
-import { Switch, Route } from 'react-router-dom';
 import { fetchQuestionsRequest } from '../../modules/questions';
 import Footer from '../Footer/Footer';
 import WelcomePage from '../WelcomePage/WelcomePage';
@@ -11,14 +10,32 @@ import NotFoundPage from '../NotFoundPage/NotFoundPage';
 import Loader from '../Loader/Loader';
 import AppError from '../AppError/AppError';
 import { getQuestionsIsLoading, getQuestionsError } from '../../modules/questions';
-import { IAppProps } from './App.types';
+import { IAppProps, IAppMapStateProps, IAppMapDispatchProps } from './App.types';
 import { IState } from '../../store/store.typings';
+import { getPage } from '../../modules/pages';
 
 class App extends React.Component<IAppProps> {
 	componentDidMount() {
 		const { fetchQuestionsRequest } = this.props;
 
 		fetchQuestionsRequest();
+	}
+
+	renderPage() {
+		const { page } = this.props;
+		const parsedPage = page.split('/');
+		const firstLevel = parsedPage[1];
+		const secondLevel = Number(parsedPage[2]);
+
+		if (firstLevel === '') {
+			return <WelcomePage />;
+		} else if (firstLevel === 'questions') {
+			return <QuestionPage number={secondLevel} />;
+		} else if (firstLevel === 'results') {
+			return <ResultsPage />;
+		}
+
+		return <NotFoundPage />;
 	}
 
 	render() {
@@ -30,14 +47,7 @@ class App extends React.Component<IAppProps> {
 					<Loader />
 				) : questionsError ? (
 					<AppError>Что-то пошло не так...</AppError>
-				) : (
-					<Switch>
-						<Route path="/" component={WelcomePage} exact />
-						<Route path="/questions/:index" component={QuestionPage} exact />
-						<Route path="/results" component={ResultsPage} exact />
-						<Route path="*" component={NotFoundPage} />
-					</Switch>
-				)}
+				) : this.renderPage()}
 
 				<Footer />
 			</React.Fragment>
@@ -45,11 +55,12 @@ class App extends React.Component<IAppProps> {
 	}
 }
 
-const mapStateToProps = (state: IState) => ({
+const mapStateToProps = (state: IState): IAppMapStateProps => ({
 	questionsIsLoading: getQuestionsIsLoading(state),
 	questionsError: getQuestionsError(state),
+	page: getPage(state),
 });
-const mapDispatchToPtops = (dispatch: Dispatch) => {
+const mapDispatchToPtops = (dispatch: Dispatch): IAppMapDispatchProps => {
 	return {
 		fetchQuestionsRequest: () => dispatch(fetchQuestionsRequest()),
 	};

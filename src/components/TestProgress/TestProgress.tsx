@@ -1,9 +1,11 @@
 import './TestProgress.css';
 import React from 'react';
-import { Link } from 'react-router-dom';
-import { ITestProgress } from './TestProgress.types';
+import { connect } from 'react-redux';
+import { Dispatch } from 'redux';
+import { ITestProgress, ITestProgressMapDispatchProps } from './TestProgress.types';
+import { setPage } from '../../modules/pages/actions';
 
-function TestProgress({ index, count, userAnswers }: ITestProgress) {
+function TestProgress({ index, count, userAnswers, setPage }: ITestProgress) {
 	const questionNumbers = [];
 
 	for (let i = 0; i < count; i++) questionNumbers.push(i + 1);
@@ -23,9 +25,9 @@ function TestProgress({ index, count, userAnswers }: ITestProgress) {
 						}
 						key={n}
 					>
-						<Link className="TestProgress__item-link" to={`/questions/${n}`}>
+						<span className="TestProgress__item-link" onClick={() => setPage(`/questions/${n}`)}>
 							{n}
-						</Link>
+						</span>
 					</li>
 				);
 			})}
@@ -33,4 +35,8 @@ function TestProgress({ index, count, userAnswers }: ITestProgress) {
 	);
 }
 
-export default TestProgress;
+const mapDispatchToProps = (dispatch: Dispatch): ITestProgressMapDispatchProps => ({
+	setPage: (page) => dispatch(setPage(page))
+});
+
+export default connect(null, mapDispatchToProps)(TestProgress);

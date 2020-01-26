@@ -1,10 +1,12 @@
 import './Test.css';
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { Dispatch } from 'redux';
 import Question from '../Question/Question';
 import TestProgress from '../TestProgress/TestProgress';
 import Button from '../Button/Button';
-import { ITestProps } from './Test.types';
+import { ITestProps, ITestMapDispatchProps } from './Test.types';
+import { setPage } from '../../modules/pages';
 
 function Test({
 	question,
@@ -15,9 +17,13 @@ function Test({
 	userAnswer,
 	userAnswers,
 	isAllQuestionsAnswered,
+	setPage,
 }: ITestProps) {
 	const isPrevDisabled = index === 1;
 	const isNextDisabled = index === count;
+	const goToPrevQuestion = () => setPage(`/questions/${index - 1}`);
+	const goToNextQuestion = () => setPage(`/questions/${index + 1}`);
+	const goToResults = () => setPage('/results');
 
 	return (
 		<div className="Test">
@@ -30,9 +36,9 @@ function Test({
 						Предыдущий вопрос
 					</Button>
 				) : (
-					<Link className="Test__button" to={`/questions/${index - 1}`}>
-						<Button className="Test__button-inner">Предыдущий вопрос</Button>
-					</Link>
+					<Button className="Test__button" onClick={goToPrevQuestion}>
+						Предыдущий вопрос
+					</Button>
 				)}
 
 				{isNextDisabled ? (
@@ -40,19 +46,25 @@ function Test({
 						Следующий вопрос
 					</Button>
 				) : (
-					<Link className="Test__button" to={`/questions/${index + 1}`}>
-						<Button className="Test__button-inner">Следующий вопрос</Button>
-					</Link>
+					<Button className="Test__button" onClick={goToNextQuestion}>
+						Следующий вопрос
+					</Button>
 				)}
 
 				{isAllQuestionsAnswered ? (
-					<Link className="Test__button Test__button--finished" to="/results">
-						<Button className="Test__button-inner">Закончить</Button>
-					</Link>
+					<Button className="Test__button Test__button--finished" onClick={goToResults}>
+						Закончить
+					</Button>
 				) : null}
 			</p>
 		</div>
 	);
 }
 
-export default Test;
+const mapStateToProps = () => ({});
+
+const mapDispatchToProps = (dispatch: Dispatch): ITestMapDispatchProps => ({
+	setPage: (page) => dispatch(setPage(page)),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Test);

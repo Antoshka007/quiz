@@ -5,6 +5,7 @@ export interface IState {
         isLoading: boolean;
         error: Error | null;
     };
+    page: string;
 }
 
 export interface IQuestion {

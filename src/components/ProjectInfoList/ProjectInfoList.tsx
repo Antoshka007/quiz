@@ -6,7 +6,6 @@ function ProjectInfoList() {
 		{ name: 'Create React App', version: '3.3.0' },
 		{ name: 'React', version: '16.12.0' },
 		{ name: 'ReactDOM', version: '16.12.0' },
-		{ name: 'React Router DOM', version: '5.1.2' },
 		{ name: 'Redux', version: '4.0.5' },
 		{ name: 'React Redux', version: '7.1.3' },
 		{ name: 'Redux Actions', version: '2.6.5' },

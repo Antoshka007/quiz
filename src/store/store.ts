@@ -1,6 +1,7 @@
 import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
 import { reducer as answersReducer } from '../modules/answers';
 import { reducer as questionsReducer, questionsMiddleware } from '../modules/questions';
+import { reducer as pageReducer } from '../modules/pages';
 
 declare global {
     interface Window {
@@ -11,6 +12,7 @@ declare global {
 const reducers = {
 	userAnswers: answersReducer,
 	questions: questionsReducer,
+	page: pageReducer,
 };
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;

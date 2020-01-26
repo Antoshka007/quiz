@@ -1,4 +1,6 @@
 import { IQuestion } from '../../store/store.typings';
+import { setPage } from '../../modules/pages/actions';
+import { clearAnswers } from '../../modules/answers/actions';
 
 export interface IResultPageMapStateProps {
 	userAnswers: string[];
@@ -6,7 +8,8 @@ export interface IResultPageMapStateProps {
 }
 
 export interface IResultPageMapDispatchProps {
-	clearAnswers: () => void;
+	clearAnswers: typeof clearAnswers;
+	setPage: typeof setPage;
 }
 
 export interface IResultsPageProps extends IResultPageMapStateProps, IResultPageMapDispatchProps {}

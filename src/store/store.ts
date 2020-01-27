@@ -1,6 +1,6 @@
-import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
+import { createStore, combineReducers, compose } from 'redux';
 import { reducer as answersReducer } from '../modules/answers';
-import { reducer as questionsReducer, questionsMiddleware } from '../modules/questions';
+import { reducer as questionsReducer } from '../modules/questions';
 import { reducer as pageReducer } from '../modules/pages';
 
 declare global {
@@ -20,6 +20,6 @@ const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 export default () => {
 	return createStore(
 		combineReducers(reducers),
-		composeEnhancers(applyMiddleware(questionsMiddleware))
+		composeEnhancers()
 	);
 };

@@ -1,10 +1,6 @@
 export interface IState {
     userAnswers: Array<string>;
-    questions: {
-        data: Array<IQuestion>;
-        isLoading: boolean;
-        error: Error | null;
-    };
+    questions: Array<IQuestion>;
     page: string;
 }
 
